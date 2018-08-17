@@ -1,0 +1,16 @@
+---
+WSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: Scrapping Instagram to use its's CDN.
+Resources:
+  InstaAWSFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: bin/insta_json
+      Runtime: go1.x
+      Events:
+        Vote:
+          Type: Api
+          Properties:
+            Path: /
+            Method: get

@@ -1,0 +1,35 @@
+# Welcome to Serverless!
+---
+service: goinsta
+
+provider:
+  name: aws
+  runtime: go1.x
+  memorySize: 128
+  timeout: 30    # optional, in seconds, default is 6
+  versionFunctions: false    # optional, default is true
+  stage: dev
+  region: eu-central-1
+  environment:
+    SERVICE_NAME: ${self:service}
+
+plugins:
+
+custom:
+
+package:
+  exclude:
+    - ./**
+  include:
+    - ./bin/**
+
+functions:
+  insta_json:
+    handler: bin/insta_json
+    events:
+      - http:
+          path: insta_json
+          method: get
+    environment:
+      USERNAME: ${file(./.env.yml):USERNAME}
+      PASSWORD: ${file(./.env.yml):PASSWORD}

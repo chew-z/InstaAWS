@@ -1,0 +1,14 @@
+# Serverless directories
+.serverless
+
+# golang output binary directory
+bin
+
+# golang vendor (dependencies) directory
+vendor
+
+# dotenv variables - passwords etc.
+.env.yml
+
+# ??
+gpg
