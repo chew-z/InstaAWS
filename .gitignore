@@ -10,5 +10,8 @@ vendor
 # dotenv variables - passwords etc.
 .env.yml
 
-# ??
+# sample download file
+instagram.json
+
+# ?? leftover?
 gpg
