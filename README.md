@@ -11,10 +11,13 @@ Works well. Requires some tuning and further development.
 - set ENV variables (username, password) in .env.yml
 - deploy using serverless as AWS Lambda - Go function [see serverless.yml]
 ```
-   sls deploy ```
+   sls deploy 
+```
+
 - get JSON file with pictures metatdata from user feed
 ``` 
-    curl -X GET -o instagram.json 'lambda-uri?limit=100' ```
+    curl -X GET -o instagram.json 'lambda-uri?limit=100' 
+```
 
 ## TODO
 
