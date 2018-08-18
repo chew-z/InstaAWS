@@ -13,10 +13,13 @@ Works well. Requires some tuning and further development.
 ```
    sls deploy 
 ```
-
+- get [saw](https://github.com/donnemartin/saws) and watch logs
+```
+  saw watch /aws/lambda/endpoint --region "eu-central-1"
+```
 - get JSON file with pictures metatdata from user feed
 ``` 
-    curl -X GET -o instagram.json 'lambda-uri?limit=100' 
+    curl -X GET -o instagram.json 'uri://lambda-ednpoint?limit=100' 
 ```
 
 ## TODO
@@ -26,4 +29,9 @@ Works well. Requires some tuning and further development.
 
 ## Limitations
 
-AWS Proxy has maximum timeout of 30 seconds. With large feed and extensive use of append operation in code this isn't enough for function to finish. So I am thinking about workarounds like getting data in chunks, narrowing via tags or timestamps or search conditions etc.  But that makes simple code into complex one.
+AWS [API Gateway has intergration timeout](https://docs.aws.amazon.com/apigateway/latest/developerguide/limits.html) of maximum 30 seconds. With large Instagram feed and extensive use of append operation in code this isn't enough time for AWS Lambda function to finish. So I am thinking about workarounds like getting data in chunks, narrowing via tags or timestamps or search conditions etc.  But that makes simple code into complex one.
+
+## What's interesting about it?
+
+- I am using [goinsta](https://github.com/ahmdrz/goinsta) - good but it has it's limitations as Import/Export operations are hardcoded for storing session in file - not possible with Lambda. So my login() function is storing Instagram object in cache instead.
+- I am using [go-cache](https://github.com/patrickmn/go-cache) to good effect. Now [Lambda functions](https://aws.amazon.com/lambda/faqs/#) are essentially stateless and not reusable (lifetime is circa 60 seconds apparently). However it seems that a series of calls to function can find it's way to function instance and re-use Instagram object from cache. It shaves quite some time on successive calls - watch it happen in logs - I guess it is  taking advantage of [freeze/thaw cycle](https://aws.amazon.com/blogs/compute/container-reuse-in-lambda/).
