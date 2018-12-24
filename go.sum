@@ -1,0 +1,6 @@
+github.com/ahmdrz/goinsta v0.0.0-20180703233155-8a4b1078ad1b h1:KaMnCrfj0AQzJwAJnS+6aFuEv35TSgw5r5lScOtHNBU=
+github.com/ahmdrz/goinsta v0.0.0-20180703233155-8a4b1078ad1b/go.mod h1:qc70+iP3C8qQ8jIrx+sVZ9C1LOSqjXauchRhB5sK+Us=
+github.com/aws/aws-lambda-go v1.4.0 h1:utQd5PalMe5a7bLjfcf6dmXInYmyTCAZG+1iOO0P8o4=
+github.com/aws/aws-lambda-go v1.4.0/go.mod h1:zUsUQhAUjYzR8AuduJPCfhBuKWUaDbQiPOG+ouzmE1A=
+github.com/patrickmn/go-cache v2.1.0+incompatible h1:HRMgzkcYKYpi3C8ajMPV8OFXaaRUnok+kx1WdO15EQc=
+github.com/patrickmn/go-cache v2.1.0+incompatible/go.mod h1:3Qf8kWWT7OJRJbdiICTKqZju1ZixQ/KpMGzzAfe6+WQ=
