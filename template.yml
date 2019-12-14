@@ -6,7 +6,7 @@ Resources:
   InstaAWSFunction:
     Type: AWS::Serverless::Function
     Properties:
-      Handler: bin/insta_json
+      Handler: bin/insta
       Runtime: go1.x
       Events:
         Vote:
