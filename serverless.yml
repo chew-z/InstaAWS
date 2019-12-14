@@ -29,7 +29,7 @@ functions:
     handler: bin/insta
     events:
       - http:
-          path: insta
+          path: insta/{any+}
           method: get
     environment:
       USERNAME: ${file(./.env.yml):USERNAME}
