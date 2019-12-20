@@ -6,7 +6,8 @@
 instagram.json
 # golang output binary directory
 bin
-
+#
+main.bak
 # Binaries for programs and plugins
 *.exe
 *.exe~

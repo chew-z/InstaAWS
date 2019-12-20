@@ -52,13 +52,12 @@ func getJSON(c *gin.Context) {
 	lmt, _ := strconv.Atoi(limit)
 	insta, err := login(user, password)
 	if err != nil {
-		c.String(418, err.Error())
+		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
 	}
-	body := instagram(*insta, lmt)
-	c.String(http.StatusOK, body)
+	data := instagram(*insta, lmt)
+	c.JSON(http.StatusOK, data)
 	return
-
 }
 
 /* login
@@ -91,7 +90,7 @@ returns JSON with images metadata (links, places, likers etc.)
 returns <= limit images
 processing is slow, takes to long for AWS Proxy timeout
 */
-func instagram(insta goinsta.Instagram, limit int) string {
+func instagram(insta goinsta.Instagram, limit int) *[]instaImage {
 	var Images []instaImage
 	media := insta.Account.Feed()
 	i := 0
@@ -106,6 +105,7 @@ MediaLoop:
 				// tm := time.Unix(Image.TakenAt, 0)
 				// log.Println(i, ":", Image.ID, "-", tm)
 				// Append image to array
+				// log.Println(Image.ImageVersions2.Candidates[0].URL)
 				Images = append(Images, Image)
 			}
 			if i >= limit {
@@ -113,13 +113,7 @@ MediaLoop:
 			} // We only need so many images
 		}
 	}
-	// Create JSON object from Images
-	jsonImages, jsonErr3 := json.MarshalIndent(Images, "    ", "    ")
-	if jsonErr3 != nil {
-		log.Println(jsonErr3.Error())
-	}
-
-	return string(jsonImages)
+	return &Images
 }
 
 /* cast - cast struct into JSON, into smaller struct */
