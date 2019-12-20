@@ -33,6 +33,7 @@ func Handler(req events.APIGatewayProxyRequest) (events.APIGatewayProxyResponse,
 			c.String(http.StatusOK, "pong")
 		})
 		r.GET("/insta/json", getJSON)
+
 		ginLambda = ginadapter.New(r)
 	}
 
@@ -51,7 +52,7 @@ func getJSON(c *gin.Context) {
 	lmt, _ := strconv.Atoi(limit)
 	insta, err := login(user, password)
 	if err != nil {
-		c.String(http.StatusOK, err.Error())
+		c.String(418, err.Error())
 		return
 	}
 	body := instagram(*insta, lmt)
