@@ -6,6 +6,6 @@ require (
 	github.com/ahmdrz/goinsta/v2 v2.4.4
 	github.com/aws/aws-lambda-go v1.13.3
 	github.com/awslabs/aws-lambda-go-api-proxy v0.5.0
-	github.com/gin-gonic/gin v1.5.0
+	github.com/gin-gonic/gin v1.7.7
 	github.com/patrickmn/go-cache v2.1.0+incompatible
 )
